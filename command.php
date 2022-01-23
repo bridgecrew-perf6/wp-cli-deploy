@@ -33,13 +33,13 @@ WP_CLI::add_command(
 
             // do some url parsing
             $sshUrl = rtrim($aliases[$env]['ssh'], '/');
-            $sshUrlParts = parse_url($sshUrl);
+            $sshUrlParts = \WP_CLI\Utils\parse_url($sshUrl);
 
             $command = sprintf(
                 'ssh %s@%s -p %s "cd %s && git pull"',
                 $sshUrlParts['user'],
                 $sshUrlParts['host'],
-                empty($sshUrlParts['port']) ? 21 : $sshUrlParts['port'],
+                empty($sshUrlParts['port']) ? 22 : $sshUrlParts['port'],
                 $sshUrlParts['path']
             );
 
